@@ -2,9 +2,9 @@ import express from 'express';
 import User from '../models/User.js';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
+import { JWT_SECRET } from '../utils.js';
 
 const router = express.Router();
-const JWT_SECRET = process.env.JWT_SECRET || 'your_jwt_secret';
 
 router.get('/users', async (req, res) => {
   try {
@@ -15,7 +15,6 @@ router.get('/users', async (req, res) => {
     res.status(500).json({ message: 'Server error' });
   }
 });
-
 
 router.post('/register', async (req, res) => {
   const { first_name, last_name, email, age, password } = req.body;
@@ -42,7 +41,6 @@ router.post('/register', async (req, res) => {
   }
 });
 
-
 router.post('/login', async (req, res) => {
   const { email, password } = req.body;
 
@@ -67,7 +65,6 @@ router.post('/login', async (req, res) => {
     res.status(500).json({ message: 'Server error' });
   }
 });
-
 
 router.get('/current', (req, res) => {
   const token = req.headers.authorization?.split(' ')[1];
