@@ -22,7 +22,7 @@ router.post('/register', async (req, res) => {
   try {
     const existingUser = await User.findOne({ email });
     if (existingUser) {
-      return res.status(400).json({ message: 'User already exists' });
+      return res.status(400).json({ message: 'El usuario ya existe' });
     }
 
     const hashedPassword = bcrypt.hashSync(password, 10);
@@ -72,7 +72,7 @@ router.post('/login', async (req, res) => {
 router.get('/current', (req, res) => {
   const token = req.headers.authorization?.split(' ')[1];
   if (!token) {
-    return res.status(401).json({ message: 'Unauthorized' });
+    return res.status(401).json({ message: 'Sin autorización' });
   }
 
   try {
