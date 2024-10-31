@@ -20,7 +20,7 @@ src/
 │   └── sessions.js             
 │
 ├── app.js                      
-└── .env                        # 
+└── utils.js                
 
 ## Inicio del servidor 
 
